@@ -15,6 +15,7 @@ class SidebarScreen extends StatelessWidget {
       ),
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width * 0.85,
+      // this will set width = 85% of screen
       padding: const EdgeInsets.symmetric(
         vertical: 35.0,
         horizontal: 20.0,

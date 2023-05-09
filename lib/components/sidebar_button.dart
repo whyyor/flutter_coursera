@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 
 class SidebarButton extends StatelessWidget {
+  const SidebarButton({required this.triggerAnimation});
+
+  final VoidCallback triggerAnimation;
+
   @override
   Widget build(BuildContext context) {
     return RawMaterialButton(
-      onPressed: () {
-        print("Sidebar button pressed");
-      },
+      onPressed: triggerAnimation,
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
       // when we tap this button it will only tap to it's content
       highlightColor: Colors.transparent,
@@ -27,11 +29,11 @@ class SidebarButton extends StatelessWidget {
                 blurRadius: 16.0,
               )
             ]),
+        padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 14.0),
         child: Image.asset(
           'asset/icons/icon-sidebar.png',
           color: kPrimaryLabelColor,
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 14.0),
       ),
     );
   }
