@@ -67,59 +67,62 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         child: Stack(
           children: [
             SafeArea(
-              child: Column(
-                children: [
-                  HomeScreenNavBar(triggerAnimation: () {
-                    setState(() {
-                      sidebarHidden = !sidebarHidden;
-                    });
-                    sidebarAnimationController.forward();
-                  }),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 20.0,
+              child: SingleChildScrollView(
+              // this will auto adjust the view on smaller devices
+                child: Column(
+                  children: [
+                    HomeScreenNavBar(triggerAnimation: () {
+                      setState(() {
+                        sidebarHidden = !sidebarHidden;
+                      });
+                      sidebarAnimationController.forward();
+                    }),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20.0,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        //start only fills available area stretch fills entire area
+                        children: [
+                          Text(
+                            "Recents",
+                            style: kLargeTitleStyle,
+                          ),
+                          const SizedBox(
+                            height: 5.0,
+                          ),
+                          Text(
+                            "23 courses, more coming",
+                            style: kSubtitleStyle,
+                          ),
+                        ],
+                      ),
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      //start only fills available area stretch fills entire area
-                      children: [
-                        Text(
-                          "Recents",
-                          style: kLargeTitleStyle,
-                        ),
-                        const SizedBox(
-                          height: 5.0,
-                        ),
-                        Text(
-                          "23 courses, more coming",
-                          style: kSubtitleStyle,
-                        ),
-                      ],
+                    const SizedBox(
+                      height: 20.0,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 20.0,
-                  ),
-                  const RecentCourseList(),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 20.0,
-                      right: 20.0,
-                      top: 25.0,
-                      bottom: 16.0,
+                    const RecentCourseList(),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: 20.0,
+                        right: 20.0,
+                        top: 25.0,
+                        bottom: 16.0,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Text(
+                            "Explore",
+                            style: kTitle1Style,
+                          ),
+                        ],
+                      ),
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Text(
-                          "Explore",
-                          style: kTitle1Style,
-                        ),
-                      ],
-                    ),
-                  ),
-                  ExploreCourseList(),
-                ],
+                    ExploreCourseList(),
+                  ],
+                ),
               ),
             ),
             ContinueWatchingScreen(),
@@ -162,4 +165,3 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     );
   }
 }
-

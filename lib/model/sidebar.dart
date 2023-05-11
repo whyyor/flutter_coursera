@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'dart:io';
 
 class SidebarItem {
   String title;
@@ -6,7 +8,7 @@ class SidebarItem {
   Icon icon;
 
   SidebarItem(
-      {required this.title, required this.background, required this.icon});
+      {required this.title, required this.background, required this.icon,});
 }
 
 var sidebarItem = [
@@ -31,8 +33,8 @@ var sidebarItem = [
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
         colors: [Color(0xFFFA7d75), Color(0xFFC23D61)]),
-    icon: const Icon(
-      Icons.library_books,
+    icon: Icon(
+      Platform.isIOS ? CupertinoIcons.book_solid : Icons.library_books,
       color: Colors.white,
     ),
   ),
@@ -54,8 +56,8 @@ var sidebarItem = [
       end: Alignment.bottomRight,
       colors: [Color(0xFF4E62CC), Color(0xFF202A78)],
     ),
-    icon: const Icon(
-      Icons.settings,
+    icon: Icon(
+      Platform.isIOS ? CupertinoIcons.settings_solid : Icons.settings,
       color: Colors.white,
     ),
   ),
