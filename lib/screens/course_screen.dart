@@ -6,6 +6,7 @@ import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 import '../constants.dart';
 import '../model/course.dart';
+import 'course_sections_screen.dart';
 
 class CourseScreen extends StatefulWidget {
   const CourseScreen({required this.course});
@@ -66,8 +67,8 @@ class _CourseScreenState extends State<CourseScreen> {
             ),
           ],
           minHeight: 0.0,
-          maxHeight: MediaQuery.of(context).size.height * 0.97,
-          panel: Container(),
+          maxHeight: MediaQuery.of(context).size.height * 0.95,
+          panel: CourseSectionsScreen(),
           body: SingleChildScrollView(
             child: Column(
               children: [
@@ -399,3 +400,4 @@ class _CourseScreenState extends State<CourseScreen> {
     );
   }
 }
+
