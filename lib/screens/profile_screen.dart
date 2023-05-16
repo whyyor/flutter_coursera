@@ -1,10 +1,8 @@
 import 'dart:io';
 
-import 'package:designcode/components/cards/completed_courses_card.dart';
 import 'package:designcode/components/certificate_viewer.dart';
 import 'package:designcode/components/lists/completed_courses_list.dart';
 import 'package:designcode/constants.dart';
-import 'package:designcode/model/course.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
