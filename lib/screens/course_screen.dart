@@ -9,7 +9,7 @@ import '../model/course.dart';
 import 'course_sections_screen.dart';
 
 class CourseScreen extends StatefulWidget {
-  const CourseScreen({required this.course});
+  const CourseScreen({super.key, required this.course});
 
   final Course course;
 
@@ -28,7 +28,7 @@ class _CourseScreenState extends State<CourseScreen> {
             margin: const EdgeInsets.symmetric(horizontal: 6.0),
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: i == 0 ? Color(0xFF0971FE) : Color(0xFFA6AEBD),
+              color: i == 0 ? const Color(0xFF0971FE) : const Color(0xFFA6AEBD),
             )),
       );
     }
@@ -194,9 +194,9 @@ class _CourseScreenState extends State<CourseScreen> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(right: 28.0),
+                      padding: const EdgeInsets.only(right: 28.0),
                       child: Container(
-                        padding: EdgeInsets.only(
+                        padding: const EdgeInsets.only(
                           top: 12.5,
                           bottom: 13.5,
                           left: 20.5,
@@ -205,7 +205,7 @@ class _CourseScreenState extends State<CourseScreen> {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(16.0),
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               color: kShadowColor,
                               blurRadius: 16.0,
@@ -221,7 +221,7 @@ class _CourseScreenState extends State<CourseScreen> {
                   ],
                 ),
                 Padding(
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                     top: 12.0,
                     left: 28.0,
                     right: 28.0,
@@ -232,31 +232,31 @@ class _CourseScreenState extends State<CourseScreen> {
                       Row(
                         children: [
                           Container(
+                            height: 58.0,
+                            width: 58.0,
+                            decoration: BoxDecoration(
+                              gradient: widget.course.background,
+                              borderRadius: BorderRadius.circular(29.0),
+                            ),
                             child: Padding(
                               padding: const EdgeInsets.all(4.0),
                               child: Container(
                                 padding: const EdgeInsets.all(4.0),
+                                decoration: BoxDecoration(
+                                  color: kBackgroundColor,
+                                  borderRadius: BorderRadius.circular(29.0),
+                                ),
                                 child: CircleAvatar(
+                                  radius: 21.0,
+                                  backgroundColor: kCourseElementIconColor,
                                   child: Icon(
                                     Platform.isAndroid
                                         ? Icons.people
                                         : CupertinoIcons.group_solid,
                                     color: Colors.white,
                                   ),
-                                  radius: 21.0,
-                                  backgroundColor: kCourseElementIconColor,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: kBackgroundColor,
-                                  borderRadius: BorderRadius.circular(29.0),
                                 ),
                               ),
-                            ),
-                            height: 58.0,
-                            width: 58.0,
-                            decoration: BoxDecoration(
-                              gradient: widget.course.background,
-                              borderRadius: BorderRadius.circular(29.0),
                             ),
                             // decoration is only available in container
                           ),
@@ -281,31 +281,31 @@ class _CourseScreenState extends State<CourseScreen> {
                       Row(
                         children: [
                           Container(
+                            height: 58.0,
+                            width: 58.0,
+                            decoration: BoxDecoration(
+                              gradient: widget.course.background,
+                              borderRadius: BorderRadius.circular(29.0),
+                            ),
                             child: Padding(
                               padding: const EdgeInsets.all(4.0),
                               child: Container(
                                 padding: const EdgeInsets.all(4.0),
+                                decoration: BoxDecoration(
+                                  color: kBackgroundColor,
+                                  borderRadius: BorderRadius.circular(29.0),
+                                ),
                                 child: CircleAvatar(
+                                  radius: 21.0,
+                                  backgroundColor: kCourseElementIconColor,
                                   child: Icon(
                                     Platform.isAndroid
                                         ? Icons.format_bold
                                         : CupertinoIcons.news_solid,
                                     color: Colors.white,
                                   ),
-                                  radius: 21.0,
-                                  backgroundColor: kCourseElementIconColor,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: kBackgroundColor,
-                                  borderRadius: BorderRadius.circular(29.0),
                                 ),
                               ),
-                            ),
-                            height: 58.0,
-                            width: 58.0,
-                            decoration: BoxDecoration(
-                              gradient: widget.course.background,
-                              borderRadius: BorderRadius.circular(29.0),
                             ),
                             // decoration is only available in container
                           ),
@@ -331,8 +331,8 @@ class _CourseScreenState extends State<CourseScreen> {
                   ),
                 ),
                 Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 28.0, vertical: 24.0),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 28.0, vertical: 24.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -374,21 +374,21 @@ class _CourseScreenState extends State<CourseScreen> {
                         "5 years ago, I couldn’t write a single line of Swift. I learned it and moved to React, Flutter while using increasingly complex design tools. I don’t regret learning them because SwiftUI takes all of their best concepts. It is hands-down the best way for designers to take a first step into code.",
                         style: kBodyLabelStyle,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 24.0,
                       ),
                       Text(
                         "About this course",
                         style: kTitle1Style,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 24.0,
                       ),
                       Text(
                         "This course was written for people who are passionate about design and about Apple's SwiftUI. It beginner-friendly, but it is also packed with tricks and cool workflows about building the best UI. Currently, Xcode 11 is still in beta so the installation process may be a little hard. However, once you get everything working, then it'll get much friendlier!",
                         style: kBodyLabelStyle,
                       ),
-                      SizedBox(height: 24.0),
+                      const SizedBox(height: 24.0),
                     ],
                   ),
                 ),
@@ -400,4 +400,3 @@ class _CourseScreenState extends State<CourseScreen> {
     );
   }
 }
-
