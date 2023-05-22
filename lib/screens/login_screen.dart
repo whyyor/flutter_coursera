@@ -193,37 +193,39 @@ class _LoginScreenState extends State<LoginScreen> {
                                               email: email!,
                                               password: password!)
                                           .then(
-                                            (user) => {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      HomeScreen(),
-                                                  fullscreenDialog: false,
-                                                ),
-                                              ),
-                                            },
+                                        (user) {
+                                          user.user?.sendEmailVerification();
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  HomeScreen(),
+                                              fullscreenDialog: false,
+                                            ),
                                           );
+                                        },
+                                      );
                                     } catch (err) {}
                                   } else {
                                     showDialog(
-                                        context: context,
-                                        builder: (context) {
-                                          return AlertDialog(
-                                            title: Text("Error"),
-                                            content: Text(err.message!),
-                                            actions: [
-                                              ElevatedButton(
-                                                onPressed: () {
-                                                  Navigator.of(context).pop();
-                                                },
-                                                child: const Text(
-                                                  "Ok!",
-                                                ),
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                          title: Text("Error"),
+                                          content: Text(err.message!),
+                                          actions: [
+                                            ElevatedButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: const Text(
+                                                "Ok!",
                                               ),
-                                            ],
-                                          );
-                                        },);
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
                                   }
                                 }
                               },
@@ -253,11 +255,37 @@ class _LoginScreenState extends State<LoginScreen> {
                         const SizedBox(
                           height: 15.0,
                         ),
-                        Container(
-                          child: Text(
-                            "Forgot Password?",
-                            style: kCalloutLabelStyle.copyWith(
-                              color: const Color(0x721B1E9C),
+                        GestureDetector(
+                          onTap: () {
+                            _auth
+                                .sendPasswordResetEmail(email: email!)
+                                .then((value) => {
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return AlertDialog(
+                                            title: const Text('Email Sent!'),
+                                            content: const Text(
+                                                "The password reset email has been sent!"),
+                                            actions: [
+                                              ElevatedButton(
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                                child: const Text("OK!"),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      ),
+                                    });
+                          },
+                          child: Container(
+                            child: Text(
+                              "Forgot Password?",
+                              style: kCalloutLabelStyle.copyWith(
+                                color: const Color(0x721B1E9C),
+                              ),
                             ),
                           ),
                         )
