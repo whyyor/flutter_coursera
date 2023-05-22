@@ -45,3 +45,7 @@ app.*.map.json
 
 # api key for GoogleService-Info Plist
 /ios/Runner/GoogleService-Info.plist
+ios/firebase_app_id_file.json
+macos/Runner/GoogleService-Info.plist
+macos/Flutter/GeneratedPluginRegistrant.swift
+android/app/google-services.json

@@ -1,6 +1,7 @@
 import 'package:designcode/constants.dart';
 import 'package:designcode/screens/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -12,6 +13,9 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   String? email;
   String? password;
+  final _auth = FirebaseAuth.instance;
+  //use to call some functions from firebase auth class
+  //we use this so that we don't have to manually type firebase.instance repeatedly
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         ),
                                         onChanged: (textEntered) {
                                           email = textEntered;
-print(email);
+                                          print(email);
                                         },
                                       ),
                                     ),
@@ -170,13 +174,58 @@ print(email);
                         Row(
                           children: [
                             GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => HomeScreen(),
-                                  ),
-                                );
+                              onTap: () async {
+                                try {
+                                  await _auth.signInWithEmailAndPassword(
+                                      email: email!, password: password!);
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => HomeScreen(),
+                                      fullscreenDialog: false,
+                                    ),
+                                  );
+                                } on FirebaseAuthException catch (err) {
+                                  if (err.code == "user-not-found") {
+                                    try {
+                                      await _auth
+                                          .createUserWithEmailAndPassword(
+                                              email: email!,
+                                              password: password!)
+                                          .then(
+                                            (user) => {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      HomeScreen(),
+                                                  fullscreenDialog: false,
+                                                ),
+                                              ),
+                                            },
+                                          );
+                                    } catch (err) {}
+                                  } else {
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return AlertDialog(
+                                            title: Text("Error"),
+                                            content: Text(err.message!),
+                                            actions: [
+                                              ElevatedButton(
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                                child: const Text(
+                                                  "Ok!",
+                                                ),
+                                              ),
+                                            ],
+                                          );
+                                        },);
+                                  }
+                                }
                               },
                               child: Container(
                                 child: Text(
