@@ -20,11 +20,12 @@ class MyApp extends StatelessWidget {
       ),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          return MaterialApp(
+          return const MaterialApp(
             debugShowCheckedModeBanner: false,
-            home: (FirebaseAuth.instance.currentUser == null)
-                ? const LoginScreen()
-                : HomeScreen(),
+            // home: (FirebaseAuth.instance.currentUser == null)
+            //     ? const LoginScreen()
+            //     : HomeScreen(),
+            home: LoginScreen(),
           );
         } else {
           return MaterialApp(
